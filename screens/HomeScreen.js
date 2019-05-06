@@ -1,85 +1,143 @@
-import React from "react";
-import {
-  Image,
-  Platform,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View
-} from "react-native";
-import { WebBrowser } from "expo";
+import React, { Component } from 'react'
+import { WebView, Text, View, ScrollView, StyleSheet, Platform } from 'react-native'
+import { Container, Content, Header } from 'native-base'
+import { NavigationActions } from 'react-navigation'
+import SearchBar from '../components/SearchBar'
+import API from '../utils/API'
 
-import { MonoText } from "../components/StyledText";
-
-export default class HomeScreen extends React.Component {
+export default class HomeScreen extends Component {
   static navigationOptions = {
-    header: null
-  };
+    header: null,
+  }
 
-  render() {
+  state = {
+    bookSearch: '',
+    books: [],
+    user: null,
+    savingBook: false
+  }
+
+  componentDidMount () {
+    console.log('HomeScreen triggered')
+    // const user = this.props.navigation.state.params.data
+    // console.log('user', user)
+    // this.props.navigation.setParams({ user })
+    // const navigateAction = NavigationActions.setParams({
+    //   key: 'id-1547683730508-2',
+    //   params: { user: user }
+    // })
+
+    // this.props.navigation.dispatch(navigateAction)
+
+    // this.props.navigation.goBack();
+    //
+    // this.setState({ user })
+  }
+
+  // searchBook = (event) => {
+  //   event.preventDefault()
+  //   axios
+  //     .get('https://www.googleapis.com/books/v1/volumes', { params: { q: this.state.bookSearch } })
+  //     .then((results) => {
+  //       // console.log(results)
+  //       this.setState({ books: results.data.items })
+  //     })
+  //     .catch(err => console.log(err))
+  // }
+
+  handleInputChange = (search) => {
+    this.setState({ bookSearch: search })
+  }
+
+  // bookDetail = (bookObj) => {
+  //   const navigateAction = NavigationActions.navigate({
+  //     routeName: 'BookDetail',
+  //     params: { data: bookObj }
+  //   })
+  //   this.props.navigation.dispatch(navigateAction)
+  //   // this.props.navigation.goBack();
+  // }
+
+  // saveBook = (bookObj) => {
+  //
+  //   const { title, subtitle, description, authors, imageLinks, infoLink, googleId } = bookObj
+  //
+  //   const newBook = {
+  //     title,
+  //     subtitle,
+  //     description,
+  //     authors,
+  //     image: imageLinks.thumbnail,
+  //     infoLink,
+  //     googleId
+  //   }
+  //   this.setState({ savingBook: true })
+  //   // TODO: Add this.state.user_id as a parameter for user saved books
+  //   API.saveBook(newBook)
+  //     .then(res => this.setState({ savingBook: false }))
+  //     .catch(err => this.setState({ savingBook: false, error: true, message }))
+  // }
+
+  goHome = () => {
+    const navigateAction = NavigationActions.navigate({
+      routeName: 'Auth',
+    })
+    this.props.navigation.dispatch(navigateAction)
+    // this.props.navigation.goBack();
+  }
+
+  logout = () => {
+    API.logoutUser()
+      .then(res => this.goHome())
+      .catch(err => console.log(err))
+  }
+
+  // renderIndicator () {
+  //   return (
+  //     <ActivityIndicator style={{
+  //       justifyContent: 'center',
+  //       alignItems: 'center',
+  //       position: 'absolute',
+  //       left: '50%',
+  //       top: '50%',
+  //       zIndex: 1
+  //     }} size="large" color="#0000ff"/>
+  //   )
+  // }
+
+  render () {
     return (
       <View style={styles.container}>
-        <ScrollView
-          style={styles.container}
-          contentContainerStyle={styles.contentContainer}
-        >
-          <View style={styles.getStartedContainer}>
-            <View
-              style={[styles.codeHighlightContainer, styles.homeScreenFilename]}
-            >
-              <MonoText style={styles.codeHighlightText}>
-                Greetings fellow humans.
-              </MonoText>
-            </View>
-            <Text style={styles.getStartedText}>
-              I'm working on removing some of the excess from the default React
-              Native app.
-            </Text>
-          </View>
-        </ScrollView>
+        <SearchBar
+          handleInputChange={this.handleInputChange}
+          search={this.searchBook}
+          logout={this.logout}
+        />
+        <Text>Elevated</Text>
+        {/*<ScrollView*/}
+        {/*  style={styles.container}*/}
+        {/*  contentContainerStyle={styles.contentContainer}>*/}
 
-        <View style={styles.tabBarInfoContainer}>
-            <Text>This is mainTabNavigator</Text>
-        </View>
+        {/*  {this.state.books.map(book => {*/}
+        {/*      const bookObj = {*/}
+        {/*        ...book.volumeInfo,*/}
+        {/*        googleId: book.id*/}
+        {/*      }*/}
+
+        {/*      return (*/}
+        {/*        <BookCard*/}
+        {/*          key={book.id}*/}
+        {/*          data={bookObj}*/}
+        {/*          bookDetail={this.bookDetail}*/}
+        {/*          save={this.saveBook}/>*/}
+        {/*      )*/}
+        {/*    }*/}
+        {/*  )}*/}
+        {/*</ScrollView>*/}
+        {/*{this.state.savingBook ? this.renderIndicator() : null}*/}
       </View>
-    );
+    )
   }
-
-  _maybeRenderDevelopmentModeWarning() {
-    if (__DEV__) {
-      const learnMoreButton = (
-        <Text onPress={this._handleLearnMorePress} style={styles.helpLinkText}>
-          Learn more
-        </Text>
-      );
-
-      return (
-        <Text style={styles.developmentModeText}>
-          Development mode is enabled, your app will be slower but you can use
-          useful development tools. {learnMoreButton}
-        </Text>
-      );
-    } else {
-      return (
-        <Text style={styles.developmentModeText}>
-          You are not in development mode, your app will run at full speed.
-        </Text>
-      );
-    }
-  }
-
-  _handleLearnMorePress = () => {
-    WebBrowser.openBrowserAsync(
-      "https://docs.expo.io/versions/latest/guides/development-mode"
-    );
-  };
-
-  _handleHelpPress = () => {
-    WebBrowser.openBrowserAsync(
-      "https://docs.expo.io/versions/latest/guides/up-and-running.html#can-t-see-your-changes"
-    );
-  };
 }
 
 const styles = StyleSheet.create({
@@ -167,6 +225,6 @@ const styles = StyleSheet.create({
   },
   helpLinkText: {
     fontSize: 14,
-    color: "#2e78b7"
-  }
-});
+    color: '#2e78b7',
+  },
+})
