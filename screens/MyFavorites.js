@@ -5,45 +5,26 @@ import { NavigationActions } from 'react-navigation'
 import SearchBar from '../components/SearchBar'
 import API from '../utils/API'
 
-export default class HomeScreen extends Component {
+export default class MyFavorites extends Component {
   static navigationOptions = {
     header: null,
   }
 
   state = {
     bookSearch: '',
-    books: [],
-    user: null,
-    savingBook: false
+    books: []
   }
 
   componentDidMount () {
-    console.log('HomeScreen triggered')
-    // const user = this.props.navigation.state.params.data
-    // console.log('user', user)
-    // this.props.navigation.setParams({ user })
-    // const navigateAction = NavigationActions.setParams({
-    //   key: 'id-1547683730508-2',
-    //   params: { user: user }
+    console.log('MyFavorites triggered')
+    // this.props.navigation.addListener('willFocus', (route) => {
+    //   // API.getUser()
+    //   // .then(res => {
+    //   // this.getBooks(res.data.user._id)
+    //   this.getBooks()
+    //   // })
     // })
-
-    // this.props.navigation.dispatch(navigateAction)
-
-    // this.props.navigation.goBack();
-    //
-    // this.setState({ user })
   }
-
-  // searchBook = (event) => {
-  //   event.preventDefault()
-  //   axios
-  //     .get('https://www.googleapis.com/books/v1/volumes', { params: { q: this.state.bookSearch } })
-  //     .then((results) => {
-  //       // console.log(results)
-  //       this.setState({ books: results.data.items })
-  //     })
-  //     .catch(err => console.log(err))
-  // }
 
   handleInputChange = (search) => {
     this.setState({ bookSearch: search })
@@ -58,24 +39,12 @@ export default class HomeScreen extends Component {
   //   // this.props.navigation.goBack();
   // }
 
-  // saveBook = (bookObj) => {
-  //
-  //   const { title, subtitle, description, authors, imageLinks, infoLink, googleId } = bookObj
-  //
-  //   const newBook = {
-  //     title,
-  //     subtitle,
-  //     description,
-  //     authors,
-  //     image: imageLinks.thumbnail,
-  //     infoLink,
-  //     googleId
-  //   }
-  //   this.setState({ savingBook: true })
-  //   // TODO: Add this.state.user_id as a parameter for user saved books
-  //   API.saveBook(newBook)
-  //     .then(res => this.setState({ savingBook: false }))
-  //     .catch(err => this.setState({ savingBook: false, error: true, message }))
+  // getBooks = (id) => {
+  //   API.getBooks()
+  //     .then(res => {
+  //       console.log('SAVED BOOKS: ', res.data)
+  //       this.setState({ books: res.data })
+  //     })
   // }
 
   goHome = () => {
@@ -92,19 +61,6 @@ export default class HomeScreen extends Component {
       .catch(err => console.log(err))
   }
 
-  // renderIndicator () {
-  //   return (
-  //     <ActivityIndicator style={{
-  //       justifyContent: 'center',
-  //       alignItems: 'center',
-  //       position: 'absolute',
-  //       left: '50%',
-  //       top: '50%',
-  //       zIndex: 1
-  //     }} size="large" color="#0000ff"/>
-  //   )
-  // }
-
   render () {
     return (
       <View style={styles.container}>
@@ -113,28 +69,20 @@ export default class HomeScreen extends Component {
           search={this.searchBook}
           logout={this.logout}
         />
-        <Text>Elevated</Text>
-        {/*<ScrollView*/}
-        {/*  style={styles.container}*/}
-        {/*  contentContainerStyle={styles.contentContainer}>*/}
+        <Text>Elevated Favorites</Text>
+        {/*  <ScrollView>*/}
 
-        {/*  {this.state.books.map(book => {*/}
-        {/*      const bookObj = {*/}
-        {/*        ...book.volumeInfo,*/}
-        {/*        googleId: book.id*/}
+        {/*    {books ? books.map(book => {*/}
+        {/*        return (*/}
+        {/*          <BookCard*/}
+        {/*            key={book.id}*/}
+        {/*            data={book}*/}
+        {/*            bookDetail={this.bookDetail}/>*/}
+        {/*        )*/}
         {/*      }*/}
-
-        {/*      return (*/}
-        {/*        <BookCard*/}
-        {/*          key={book.id}*/}
-        {/*          data={bookObj}*/}
-        {/*          bookDetail={this.bookDetail}*/}
-        {/*          save={this.saveBook}/>*/}
-        {/*      )*/}
-        {/*    }*/}
-        {/*  )}*/}
-        {/*</ScrollView>*/}
-        {/*{this.state.savingBook ? this.renderIndicator() : null}*/}
+        {/*    ) : <Text>No Saved Books</Text>}*/}
+        {/*  </ScrollView>*/}
+        {/*</Content>*/}
       </View>
     )
   }
