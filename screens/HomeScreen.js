@@ -4,6 +4,7 @@ import { Container, Content, Header } from 'native-base'
 import { NavigationActions } from 'react-navigation'
 import SearchBar from '../components/SearchBar'
 import API from '../utils/API'
+import CardBasic from '../components/CardBasic'
 
 export default class HomeScreen extends Component {
   static navigationOptions = {
