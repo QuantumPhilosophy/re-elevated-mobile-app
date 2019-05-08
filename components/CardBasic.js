@@ -5,17 +5,14 @@ import {
   Content,
   Card,
   CardItem,
-  Text,
   Body
 } from "native-base";
-import { Image } from "react-native";
+import { Image, Text } from "react-native";
 
 // Basic card for strain and label information. The data expected for each is of the same format, so feeding it the correct props will show the correct data in the correct view.
 export default function CardBasic(props) {
   return (
-    <Container>
-      <Content padder>
-        <Card transparent>
+        <Card>
           <CardItem>
             <Body>
               <Image
@@ -32,7 +29,5 @@ export default function CardBasic(props) {
             </Body>
           </CardItem>
         </Card>
-      </Content>
-    </Container>
   );
 }

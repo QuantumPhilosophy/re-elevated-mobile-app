@@ -74,7 +74,9 @@ export default class HomeScreen extends Component {
           search={this.searchBook}
           logout={this.logout}
         />
-          {this.state.hardStrains.map(function(strain, index) {(
+        <Container>
+          {this.state.hardStrains.map(function(strain, index) {
+            return (
               <CardBasic
                 key={index}
                 name={strain.name}
@@ -82,10 +84,10 @@ export default class HomeScreen extends Component {
                 aveRating={strain.aveRating}
                 wishListed={strain.wishListed}
                 tried={strain.tried}
-                log={console.log("blah")}
               />
             );
           })}
+          </Container>
         <Text>Elevated</Text>
       </View>
     );
