@@ -1,230 +1,185 @@
-import React, { Component } from 'react'
-import { WebView, Text, View, ScrollView, StyleSheet, Platform } from 'react-native'
-import { Container, Content, Header } from 'native-base'
-import { NavigationActions } from 'react-navigation'
-import SearchBar from '../components/SearchBar'
-import API from '../utils/API'
+import React, { Component } from "react";
+import {
+  WebView,
+  Text,
+  View,
+  ScrollView,
+  StyleSheet,
+  Platform
+} from "react-native";
+import { Container, Content, Header } from "native-base";
+import { NavigationActions } from "react-navigation";
+import SearchBar from "../components/SearchBar";
+import API from "../utils/API";
+import CardBasic from "../components/CardBasic";
 
 export default class HomeScreen extends Component {
   static navigationOptions = {
-    header: null,
-  }
+    header: null
+  };
 
   state = {
-    bookSearch: '',
+    bookSearch: "",
     books: [],
     user: null,
-    savingBook: false
+    savingBook: false,
+    hardStrains: [
+      {
+        img:
+          "https://cdn4.iconfinder.com/data/icons/weed-marijuana-and-pot-leaf/50/24-128.png",
+        name: "Blue Dream",
+        aveRating: "5/7",
+        wishListed: false,
+        tried: true,
+        id: 1
+      },
+      {
+        img:
+          "https://cdn1.iconfinder.com/data/icons/medical-cannabis-flat/64/indica-cannabis-marijuana-hemp-leaf-128.png",
+        name: "Granddaddy Purple",
+        aveRating: "20/4",
+        wishListed: true,
+        tried: false,
+        id: 2
+      }
+    ]
+  };
+
+  componentDidMount() {
+    console.log("HomeScreen triggered");
+    //TODO: API call to fill apiStrains[]
   }
 
-  componentDidMount () {
-    console.log('HomeScreen triggered')
-    // const user = this.props.navigation.state.params.data
-    // console.log('user', user)
-    // this.props.navigation.setParams({ user })
-    // const navigateAction = NavigationActions.setParams({
-    //   key: 'id-1547683730508-2',
-    //   params: { user: user }
-    // })
-
-    // this.props.navigation.dispatch(navigateAction)
-
-    // this.props.navigation.goBack();
-    //
-    // this.setState({ user })
-  }
-
-  // searchBook = (event) => {
-  //   event.preventDefault()
-  //   axios
-  //     .get('https://www.googleapis.com/books/v1/volumes', { params: { q: this.state.bookSearch } })
-  //     .then((results) => {
-  //       // console.log(results)
-  //       this.setState({ books: results.data.items })
-  //     })
-  //     .catch(err => console.log(err))
-  // }
-
-  handleInputChange = (search) => {
-    this.setState({ bookSearch: search })
-  }
-
-  // bookDetail = (bookObj) => {
-  //   const navigateAction = NavigationActions.navigate({
-  //     routeName: 'BookDetail',
-  //     params: { data: bookObj }
-  //   })
-  //   this.props.navigation.dispatch(navigateAction)
-  //   // this.props.navigation.goBack();
-  // }
-
-  // saveBook = (bookObj) => {
-  //
-  //   const { title, subtitle, description, authors, imageLinks, infoLink, googleId } = bookObj
-  //
-  //   const newBook = {
-  //     title,
-  //     subtitle,
-  //     description,
-  //     authors,
-  //     image: imageLinks.thumbnail,
-  //     infoLink,
-  //     googleId
-  //   }
-  //   this.setState({ savingBook: true })
-  //   // TODO: Add this.state.user_id as a parameter for user saved books
-  //   API.saveBook(newBook)
-  //     .then(res => this.setState({ savingBook: false }))
-  //     .catch(err => this.setState({ savingBook: false, error: true, message }))
-  // }
+  handleInputChange = search => {
+    this.setState({ bookSearch: search });
+  };
 
   goHome = () => {
     const navigateAction = NavigationActions.navigate({
-      routeName: 'Auth',
-    })
-    this.props.navigation.dispatch(navigateAction)
-    // this.props.navigation.goBack();
-  }
+      routeName: "Auth"
+    });
+    this.props.navigation.dispatch(navigateAction);
+  };
 
   logout = () => {
     API.logoutUser()
       .then(res => this.goHome())
-      .catch(err => console.log(err))
-  }
+      .catch(err => console.log(err));
+  };
 
-  // renderIndicator () {
-  //   return (
-  //     <ActivityIndicator style={{
-  //       justifyContent: 'center',
-  //       alignItems: 'center',
-  //       position: 'absolute',
-  //       left: '50%',
-  //       top: '50%',
-  //       zIndex: 1
-  //     }} size="large" color="#0000ff"/>
-  //   )
-  // }
-
-  render () {
+  render() {
     return (
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         <SearchBar
           handleInputChange={this.handleInputChange}
           search={this.searchBook}
           logout={this.logout}
         />
+        <Container>
+          {this.state.hardStrains.map(function(strain, index) {
+            return (
+              <CardBasic
+                key={index}
+                name={strain.name}
+                img={strain.img}
+                aveRating={strain.aveRating}
+                wishListed={strain.wishListed}
+                tried={strain.tried}
+              />
+            );
+          })}
+          </Container>
         <Text>Elevated</Text>
-        {/*<ScrollView*/}
-        {/*  style={styles.container}*/}
-        {/*  contentContainerStyle={styles.contentContainer}>*/}
-
-        {/*  {this.state.books.map(book => {*/}
-        {/*      const bookObj = {*/}
-        {/*        ...book.volumeInfo,*/}
-        {/*        googleId: book.id*/}
-        {/*      }*/}
-
-        {/*      return (*/}
-        {/*        <BookCard*/}
-        {/*          key={book.id}*/}
-        {/*          data={bookObj}*/}
-        {/*          bookDetail={this.bookDetail}*/}
-        {/*          save={this.saveBook}/>*/}
-        {/*      )*/}
-        {/*    }*/}
-        {/*  )}*/}
-        {/*</ScrollView>*/}
-        {/*{this.state.savingBook ? this.renderIndicator() : null}*/}
-      </View>
-    )
+      </ScrollView>
+    );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: "#fff"
   },
   developmentModeText: {
     marginBottom: 20,
-    color: 'rgba(0,0,0,0.4)',
+    color: "rgba(0,0,0,0.4)",
     fontSize: 14,
     lineHeight: 19,
-    textAlign: 'center',
+    textAlign: "center"
   },
   contentContainer: {
-    paddingTop: 30,
+    paddingTop: 30
   },
   welcomeContainer: {
-    alignItems: 'center',
+    alignItems: "center",
     marginTop: 10,
-    marginBottom: 20,
+    marginBottom: 20
   },
   welcomeImage: {
     width: 100,
     height: 80,
-    resizeMode: 'contain',
+    resizeMode: "contain",
     marginTop: 3,
-    marginLeft: -10,
+    marginLeft: -10
   },
   getStartedContainer: {
-    alignItems: 'center',
-    marginHorizontal: 50,
+    alignItems: "center",
+    marginHorizontal: 50
   },
   homeScreenFilename: {
-    marginVertical: 7,
+    marginVertical: 7
   },
   codeHighlightText: {
-    color: 'rgba(96,100,109, 0.8)',
+    color: "rgba(96,100,109, 0.8)"
   },
   codeHighlightContainer: {
-    backgroundColor: 'rgba(0,0,0,0.05)',
+    backgroundColor: "rgba(0,0,0,0.05)",
     borderRadius: 3,
-    paddingHorizontal: 4,
+    paddingHorizontal: 4
   },
   getStartedText: {
     fontSize: 17,
-    color: 'rgba(96,100,109, 1)',
+    color: "rgba(96,100,109, 1)",
     lineHeight: 24,
-    textAlign: 'center',
+    textAlign: "center"
   },
   tabBarInfoContainer: {
-    position: 'absolute',
+    position: "absolute",
     bottom: 0,
     left: 0,
     right: 0,
     ...Platform.select({
       ios: {
-        shadowColor: 'black',
+        shadowColor: "black",
         shadowOffset: { height: -3 },
         shadowOpacity: 0.1,
-        shadowRadius: 3,
+        shadowRadius: 3
       },
       android: {
-        elevation: 20,
-      },
+        elevation: 20
+      }
     }),
-    alignItems: 'center',
-    backgroundColor: '#fbfbfb',
-    paddingVertical: 20,
+    alignItems: "center",
+    backgroundColor: "#fbfbfb",
+    paddingVertical: 20
   },
   tabBarInfoText: {
     fontSize: 17,
-    color: 'rgba(96,100,109, 1)',
-    textAlign: 'center',
+    color: "rgba(96,100,109, 1)",
+    textAlign: "center"
   },
   navigationFilename: {
-    marginTop: 5,
+    marginTop: 5
   },
   helpContainer: {
     marginTop: 15,
-    alignItems: 'center',
+    alignItems: "center"
   },
   helpLink: {
-    paddingVertical: 15,
+    paddingVertical: 15
   },
   helpLinkText: {
     fontSize: 14,
-    color: '#2e78b7',
-  },
-})
+    color: "#2e78b7"
+  }
+});
