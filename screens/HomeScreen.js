@@ -47,6 +47,7 @@ export default class HomeScreen extends Component {
 
   componentDidMount() {
     console.log("HomeScreen triggered");
+    //TODO: API call to fill apiStrains[]
   }
 
   handleInputChange = search => {
@@ -68,7 +69,7 @@ export default class HomeScreen extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         <SearchBar
           handleInputChange={this.handleInputChange}
           search={this.searchBook}
@@ -89,7 +90,7 @@ export default class HomeScreen extends Component {
           })}
           </Container>
         <Text>Elevated</Text>
-      </View>
+      </ScrollView>
     );
   }
 }
