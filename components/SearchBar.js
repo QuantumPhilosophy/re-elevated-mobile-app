@@ -4,7 +4,7 @@ import { Container, Header, Item, Input, Icon, Button, Text, Left } from 'native
 
 export default SearchBar = (props) => {
   return (
-    <Container>
+
       <Header searchBar rounded>
 
         <Icon style={{ padding: '2%' }}
@@ -25,6 +25,5 @@ export default SearchBar = (props) => {
           <Text>Search</Text>
         </Button>
       </Header>
-    </Container>
   )
 }

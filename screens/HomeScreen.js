@@ -23,6 +23,10 @@ export default class HomeScreen extends Component {
     books: [],
     user: null,
     savingBook: false,
+
+    apiStrains: [],
+
+
     hardStrains: [
       {
         img:
@@ -48,6 +52,13 @@ export default class HomeScreen extends Component {
   componentDidMount() {
     console.log("HomeScreen triggered");
     //TODO: API call to fill apiStrains[]
+    API.getStrains().then((response) => {
+      // console.log("RESPONSE DATA",response.data)
+      this.setState({
+        apiStrains: response.data
+      })
+    }).then(
+    console.log("this.state.API strains:",this.state.apiStrains))
   }
 
   handleInputChange = search => {
@@ -69,28 +80,29 @@ export default class HomeScreen extends Component {
 
   render() {
     return (
-      <ScrollView style={styles.container}>
+      <Container style={styles.container}>
         <SearchBar
           handleInputChange={this.handleInputChange}
           search={this.searchBook}
           logout={this.logout}
         />
-        <Container>
-          {this.state.hardStrains.map(function(strain, index) {
+        <Content>
+          {this.state.apiStrains.map(function(strain, index) {
             return (
               <CardBasic
                 key={index}
-                name={strain.name}
+                name={strain.strain_name}
                 img={strain.img}
-                aveRating={strain.aveRating}
+                aveRating={strain.strain_avg_rating}
                 wishListed={strain.wishListed}
                 tried={strain.tried}
+                id={strain.id}
               />
             );
           })}
-          </Container>
-        <Text>Elevated</Text>
-      </ScrollView>
+          </Content>
+        {/*<Text>Elevated</Text>*/}
+      </Container>
     );
   }
 }
