@@ -23,6 +23,10 @@ export default {
       dob: userObj.dob
     });
   },
+  getStrains: () => {
+    console.log("getStrains triggered")
+    return axios.get('https://elevated-shadow-api.herokuapp.com/strains')
+  },
   // saveBook: (bookObj, userId) => {
   //   return axios.post(`${api_url}/api/book/` + userId, bookObj)
   // },
