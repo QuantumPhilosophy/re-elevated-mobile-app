@@ -12,7 +12,6 @@ import { NavigationActions } from "react-navigation";
 import SearchBar from "../components/SearchBar";
 import API from "../utils/API";
 import CardBasic from "../components/CardBasic";
-import axios from 'axios'
 
 export default class HomeScreen extends Component {
   static navigationOptions = {
@@ -24,7 +23,10 @@ export default class HomeScreen extends Component {
     books: [],
     user: null,
     savingBook: false,
+
     apiStrains: [],
+
+
     hardStrains: [
       {
         img:

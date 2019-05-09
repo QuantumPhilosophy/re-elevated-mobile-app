@@ -25,6 +25,7 @@ export default function CardBasic(props) {
               <Text>
                 This is just a transparent card with some text to boot.
                 ID: {props.id} Name: {props.name} Rating: {props.aveRating}
+
               </Text>
             </Body>
           </CardItem>
