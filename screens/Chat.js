@@ -19,7 +19,7 @@ class Chat extends React.Component {
     //     query: `r_var=${props.roomId}`
     // }
     // );
-    //()
+    // ()
 
     socket.on('RECEIVE_MESSAGE', function (data) {
       console.log('Message Received: ', data)
@@ -44,7 +44,6 @@ class Chat extends React.Component {
   }
 
   render () {
-
     return (
       <Container>
         <Text>We Live</Text>

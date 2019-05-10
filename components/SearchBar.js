@@ -1,7 +1,7 @@
-import React from "react";
-import { View } from "react-native";
-import { Header, Item, Input, Icon, Button } from "native-base";
-import TopTab from "./TopTab";
+import React from 'react'
+import { View } from 'react-native'
+import { Container, Header, Item, Input, Icon, Button, Text, Left } from 'native-base'
+import TopTab from './TopTab'
 
 export default (SearchBar = props => {
   return (
@@ -19,4 +19,10 @@ export default (SearchBar = props => {
       <Button transparent onPress={props.search} />
     </Header>
   );
-});
+}
+
+const styles = StyleSheet.create({
+  header: {
+    backgroundColor: '#000'
+  },
+})
