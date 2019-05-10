@@ -12,6 +12,7 @@ import { NavigationActions } from "react-navigation";
 import SearchBar from "../components/SearchBar";
 import API from "../utils/API";
 import CardBasic from "../components/CardBasic";
+import CardLg from "../components/CardLg"
 
 export default class HomeScreen extends Component {
   static navigationOptions = {
@@ -23,42 +24,26 @@ export default class HomeScreen extends Component {
     books: [],
     user: null,
     savingBook: false,
-
     apiStrains: [],
-
-
-    hardStrains: [
-      {
-        img:
-          "https://cdn4.iconfinder.com/data/icons/weed-marijuana-and-pot-leaf/50/24-128.png",
-        name: "Blue Dream",
-        aveRating: "5/7",
-        wishListed: false,
-        tried: true,
-        id: 1
-      },
-      {
-        img:
-          "https://cdn1.iconfinder.com/data/icons/medical-cannabis-flat/64/indica-cannabis-marijuana-hemp-leaf-128.png",
-        name: "Granddaddy Purple",
-        aveRating: "20/4",
-        wishListed: true,
-        tried: false,
-        id: 2
-      }
-    ]
+    focusedStrain: []
   };
 
+  // On mount, fills apiStrains[] with strain objects for card instantiation.
   componentDidMount() {
-    console.log("HomeScreen triggered");
-    //TODO: API call to fill apiStrains[]
     API.getStrains().then((response) => {
-      // console.log("RESPONSE DATA",response.data)
+      // Pushing "real" dummy data to a selected strain for CardLg.
+      // Can't push within setState, so do it above and setState to itself.
+      // response.data[0] is the first object in the array.
+      this.state.focusedStrain.push(response.data[0])
       this.setState({
-        apiStrains: response.data
+        // response.data is the array of objects.
+        apiStrains: response.data,
+        focusedStrain: this.state.focusedStrain
       })
-    }).then(
-    console.log("this.state.API strains:",this.state.apiStrains))
+      console.log("STATE",this.state)
+    })
+      //.catch((error)=> console.log("lul error", error))
+
   }
 
   handleInputChange = search => {
@@ -86,8 +71,24 @@ export default class HomeScreen extends Component {
           search={this.searchBook}
           logout={this.logout}
         />
+          {this.state.focusedStrain.map((strain, index) => {
+            return (
+              <CardLg
+              key={index}
+              name={strain.strain_name}
+              img={strain.strain_img}
+              rating={strain.strain_avg_rating}
+              id={strain.id}
+              description={strain.strain_descr}
+              type={strain.strain_race}
+              flavor={strain.strain_flavor}
+              positive={strain.strain_positive}
+              negative={strain.strain_negative}
+              medical={strain.strain_medical}
+              labels={strain.strain_labels}
+            />)})}
         <Content>
-          {this.state.apiStrains.map(function(strain, index) {
+          {this.state.apiStrains.map((strain, index) => {
             return (
               <CardBasic
                 key={index}
