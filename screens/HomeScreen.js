@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
-import { Container, Content, Header } from 'native-base'
+import { Container } from 'native-base'
 import { NavigationActions } from 'react-navigation'
-import SearchBar from '../components/SearchBar'
-import CardBasic from '../components/CardBasic'
 import API from '../utils/API'
 import TopTab from "../components/TopTab"
 
@@ -48,9 +46,6 @@ export default class HomeScreen extends Component {
   }
 
   strainDetail = (strainObj) => {
-    // console.log('-----------------------------')
-    // console.log('strainDetail strainObj', strainObj)
-    // console.log('-----------------------------')
     const navigateAction = NavigationActions.navigate({
       routeName: 'StrainDetail',
       params: { data: strainObj }
@@ -62,8 +57,8 @@ export default class HomeScreen extends Component {
   render () {
     return (
       <Container
-        style={styles.container}
-        marginTop={Platform.os === "ios" ? 0 : 24}
+        // style={styles.container}
+        // marginTop={Platform.os === "ios" ? 0 : 24}
       >
         {/* <SearchBar
           handleInputChange={this.handleInputChange}
