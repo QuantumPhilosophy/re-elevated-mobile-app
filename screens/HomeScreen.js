@@ -11,8 +11,7 @@ import { Container, Content, Header } from "native-base";
 import { NavigationActions } from "react-navigation";
 import SearchBar from "../components/SearchBar";
 import API from "../utils/API";
-import CardBasic from "../components/CardBasic";
-import CardLg from "../components/CardLg"
+import TopTab from "../components/TopTab";
 
 export default class HomeScreen extends Component {
   static navigationOptions = {
@@ -30,20 +29,19 @@ export default class HomeScreen extends Component {
 
   // On mount, fills apiStrains[] with strain objects for card instantiation.
   componentDidMount() {
-    API.getStrains().then((response) => {
+    API.getStrains().then(response => {
       // Pushing "real" dummy data to a selected strain for CardLg.
       // Can't push within setState, so do it above and setState to itself.
       // response.data[0] is the first object in the array.
-      this.state.focusedStrain.push(response.data[0])
+      this.state.focusedStrain.push(response.data[0]);
       this.setState({
         // response.data is the array of objects.
         apiStrains: response.data,
         focusedStrain: this.state.focusedStrain
-      })
-      console.log("STATE",this.state)
-    })
-      //.catch((error)=> console.log("lul error", error))
-
+      });
+      console.log("STATE", this.state);
+    });
+    //.catch((error)=> console.log("lul error", error))
   }
 
   handleInputChange = search => {
@@ -63,46 +61,24 @@ export default class HomeScreen extends Component {
       .catch(err => console.log(err));
   };
 
+  // selectStrain = () => {
+  //   focusedStrain = state.apiStrains[this.id]
+  //   setState({
+  //     focusedStrain=this.focusedStrain
+  // })}
+
   render() {
     return (
-      <Container style={styles.container} marginTop={(Platform.os === 'ios') ? 0 : 24}>
-        <SearchBar
+      <Container
+        style={styles.container}
+        marginTop={Platform.os === "ios" ? 0 : 24}
+      >
+        {/* <SearchBar
           handleInputChange={this.handleInputChange}
           search={this.searchBook}
           logout={this.logout}
-        />
-          {this.state.focusedStrain.map((strain, index) => {
-            return (
-              <CardLg
-              key={index}
-              name={strain.strain_name}
-              img={strain.strain_img}
-              rating={strain.strain_avg_rating}
-              id={strain.id}
-              description={strain.strain_descr}
-              type={strain.strain_race}
-              flavor={strain.strain_flavor}
-              positive={strain.strain_positive}
-              negative={strain.strain_negative}
-              medical={strain.strain_medical}
-              labels={strain.strain_labels}
-            />)})}
-        <Content>
-          {this.state.apiStrains.map((strain, index) => {
-            return (
-              <CardBasic
-                key={index}
-                name={strain.strain_name}
-                img={strain.img}
-                aveRating={strain.strain_avg_rating}
-                wishListed={strain.wishListed}
-                tried={strain.tried}
-                id={strain.id}
-              />
-            );
-          })}
-          </Content>
-        {/*<Text>Elevated</Text>*/}
+        /> */}
+        <TopTab />
       </Container>
     );
   }
