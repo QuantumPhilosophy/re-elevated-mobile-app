@@ -1,11 +1,7 @@
 import React, { Component } from "react";
 import {
-  Container,
-  Header,
-  Content,
   Tab,
   Tabs,
-  Wrapper,
   View
 } from "native-base";
 import SearchTabStrains from "./SearchTabStrains";
@@ -21,6 +17,7 @@ export default class TopTab extends Component {
     user: null,
     savingBook: false,
     apiStrains: [],
+    apiLabels: [],
     focusedStrain: []
   };
 
@@ -37,18 +34,22 @@ export default class TopTab extends Component {
       });
       console.log("STATE", this.state);
     });
+
+    API.getLabels().then(response => {
+      this.setState({
+        apiLabels: response.data
+      });
+    });
     //.catch((error)=> console.log("lul error", error))
   }
 
   render() {
     return (
       <View>
-        <SearchBar/>
+        <SearchBar />
         <Tabs>
           <Tab heading="Strains">
-            <SearchTabStrains
-            apiStrains = {this.state.apiStrains}
-            />
+            <SearchTabStrains apiStrains={this.state.apiStrains} />
           </Tab>
           <Tab heading="Labels">
             <SearchTabLabels />

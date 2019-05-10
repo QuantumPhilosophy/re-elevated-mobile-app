@@ -1,6 +1,6 @@
-import axios from "axios";
+import axios from 'axios'
 
-const api_url = "https://elevated-shadow-api.herokuapp.com";
+const api_url = 'https://elevated-shadow-api.herokuapp.com'
 
 export default {
   loginUser: userObj => {
@@ -24,9 +24,12 @@ export default {
     });
   },
   getStrains: () => {
-    console.log("getStrains triggered")
-    return axios.get('https://elevated-shadow-api.herokuapp.com/strains')
-
+    console.log("getStrains triggered");
+    return axios.get("https://elevated-shadow-api.herokuapp.com/strains");
+  },
+  getLabels: () => {
+    console.log("getStrains triggered");
+    return axios.get("https://elevated-shadow-api.herokuapp.com/labels");
   },
   // saveBook: (bookObj, userId) => {
   //   return axios.post(`${api_url}/api/book/` + userId, bookObj)

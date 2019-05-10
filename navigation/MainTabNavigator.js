@@ -27,7 +27,7 @@ HomeStack.navigationOptions = {
           : 'md-information-circle'
       }
     />
-  ),
+  )
 }
 
 const MyFavoritesStack = createStackNavigator({
@@ -45,11 +45,11 @@ MyFavoritesStack.navigationOptions = {
       focused={focused}
       name={Platform.OS === 'ios' ? 'ios-link' : 'md-link'}
     />
-  ),
+  )
 }
 
 const ChatStack = createStackNavigator({
-  Chat: Chat,
+  Chat: Chat
 })
 
 Chat.navigationOptions = {
@@ -59,11 +59,11 @@ Chat.navigationOptions = {
       focused={focused}
       name={Platform.OS === 'ios' ? 'ios-link' : 'md-link'}
     />
-  ),
+  )
 }
 
 export default createBottomTabNavigator({
   HomeStack,
-  MyFavoritesStack,
+  MyFavoritesStack
   // ChatStack
 })

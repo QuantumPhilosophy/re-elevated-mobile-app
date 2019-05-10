@@ -34,14 +34,14 @@ export default class BookDetail extends Component {
                 <Text note style={{ fontSize: 24 }}>{subtitle}</Text>
               </Body>
               <Right>
-                <Icon name="heart"/>
+                <Icon name='heart' />
               </Right>
             </CardItem>
 
             <CardItem>
               <Body>
                 <Image source={{ uri: image || imageLinks.thumbnail }} resizeMode='contain' resizeMethod='scale'
-                       style={{ flex: 1, width: '100%', height: 250 }}/>
+                  style={{ flex: 1, width: '100%', height: 250 }} />
                 <Text style={{ marginTop: '4%' }}>
                   Synposis: {description}
                 </Text>
@@ -57,7 +57,7 @@ export default class BookDetail extends Component {
                     console.log('Opening link')
                   }).catch(err => console.error('An error occurred', err))
                 }}>
-                <Icon name="navigate"/>
+                <Icon name='navigate' />
                 <Text>More Info</Text>
               </Button>
             </CardItem>
