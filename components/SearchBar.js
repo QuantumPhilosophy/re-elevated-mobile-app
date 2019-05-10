@@ -1,29 +1,22 @@
-import React from 'react'
-import { View } from 'react-native'
-import { Container, Header, Item, Input, Icon, Button, Text, Left } from 'native-base'
+import React from "react";
+import { View } from "react-native";
+import { Header, Item, Input, Icon, Button } from "native-base";
+import TopTab from "./TopTab";
 
-export default SearchBar = (props) => {
+export default (SearchBar = props => {
   return (
+    <Header searchBar rounded>
+      <Item>
+        <Icon
+          style={{ padding: "2%" }}
+          onPress={props.logoutUser}
+          name="ios-person"
+        />
 
-      <Header searchBar rounded>
-
-        <Icon style={{ padding: '2%' }}
-              onPress={props.logoutUser}
-              name="ios-person"/>
-        <Item>
-          <Icon name="ios-search"/>
-          <Input
-            placeholder="Search"
-            onChangeText={props.handleInputChange}
-          />
-          {/* <Icon name="ios-people" /> */}
-        </Item>
-        <Button
-          transparent
-          onPress={props.search}
-        >
-          <Text>Search</Text>
-        </Button>
-      </Header>
-  )
-}
+        <Icon name="ios-search" />
+        <Input placeholder="Search" onChangeText={props.handleInputChange} />
+      </Item>
+      <Button transparent onPress={props.search} />
+    </Header>
+  );
+});
