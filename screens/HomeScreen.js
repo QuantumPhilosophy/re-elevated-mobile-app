@@ -65,7 +65,7 @@ export default class HomeScreen extends Component {
 
   render() {
     return (
-      <Container style={styles.container}>
+      <Container style={styles.container} marginTop={(Platform.os === 'ios') ? 0 : 24}>
         <SearchBar
           handleInputChange={this.handleInputChange}
           search={this.searchBook}
