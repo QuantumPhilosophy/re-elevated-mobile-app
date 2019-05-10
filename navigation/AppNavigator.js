@@ -1,5 +1,4 @@
 import React from 'react'
-import { View, Text, Button } from 'react-native'
 import { createAppContainer, createSwitchNavigator } from 'react-navigation'
 import MainTabNavigator from './MainTabNavigator'
 import AuthStack from './AuthNavigator'

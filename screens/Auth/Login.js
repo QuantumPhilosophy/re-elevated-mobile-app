@@ -1,10 +1,14 @@
 import React, { Component } from 'react'
 import { View, Button, TextInput } from 'react-native'
 import { NavigationActions } from 'react-navigation'
-import { Container, Header, Content, Form, Item, Input, Label } from 'native-base'
+import { Container, Header, Content, Form, Item, Input, Label, Left, Icon, Body, Title, Right } from 'native-base'
 import API from '../../utils/API'
 
 export default class SignInScreen extends Component {
+  static navigationOptions = {
+    header: null
+  }
+
   state = {
     username: '',
     password: ''
@@ -45,24 +49,33 @@ export default class SignInScreen extends Component {
   render () {
     return (
       <Container>
-        <Form>
-          <Item floatingLabel>
-            <Label>User Name</Label>
-            <Input onChangeText={(value) => this.setState({ username: value })}/>
-          </Item>
-          <Item floatingLabel last>
-            <Label>Password</Label>
-            <Input secureTextEntry={true} onChangeText={(value) => this.setState({ password: value })}/>
-          </Item>
-          <Button
-            title="Login"
-            onPress={() => this.login()}
-          />
-          <Button
-            title="Signup"
-            onPress={() => this.signUpNavigation()}
-          />
-        </Form>
+        <Header>
+          <Left/>
+          <Body>
+            <Title>Elevated</Title>
+          </Body>
+          <Right />
+        </Header>
+        <Content>
+          <Form>
+            <Item floatingLabel>
+              <Label>User Name</Label>
+              <Input onChangeText={(value) => this.setState({ username: value })}/>
+            </Item>
+            <Item floatingLabel last>
+              <Label>Password</Label>
+              <Input secureTextEntry={true} onChangeText={(value) => this.setState({ password: value })}/>
+            </Item>
+            <Button
+              title="Login"
+              onPress={() => this.login()}
+            />
+            <Button
+              title="Signup"
+              onPress={() => this.signUpNavigation()}
+            />
+          </Form>
+        </Content>
       </Container>
     )
   }

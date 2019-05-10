@@ -32,7 +32,7 @@ export default class MyFavorites extends Component {
 
   // bookDetail = (bookObj) => {
   //   const navigateAction = NavigationActions.navigate({
-  //     routeName: 'BookDetail',
+  //     routeName: 'StrainDetail',
   //     params: { data: bookObj }
   //   })
   //   this.props.navigation.dispatch(navigateAction)

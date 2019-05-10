@@ -1,10 +1,10 @@
-import React from 'react'
-import { Content, View } from 'native-base'
-import CardBasic from '../components/CardBasic'
+import React from "react";
+import { Content, View } from "native-base";
+import CardBasic from "../components/CardBasic";
+import CardLg from "../components/CardLg";
 
 export default (SearchTabStrains = props => {
-  console.log('BIG BABY BOY BROPS:',props)
-  return ( 
+  return (
     <View>
       {/* {this.state.focusedStrain.map((strain, index) => {
         return (
@@ -36,9 +36,9 @@ export default (SearchTabStrains = props => {
               tried={strain.tried}
               id={strain.id}
             />
-          )
+          );
         })}
       </Content>
     </View>
-  )
-})
+  );
+});
