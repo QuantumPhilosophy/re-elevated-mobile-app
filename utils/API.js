@@ -29,12 +29,12 @@ export default {
   },
 
   getStrains: () => {
-    console.log("getStrains triggered")
+    console.log('getStrains triggered')
     return axios.get(`${api_url}/strains`)
   },
 
   getLabels: () => {
-    console.log("getLabels triggered")
+    console.log('getLabels triggered')
     return axios.get(`${api_url}/labels`)
   }
 
