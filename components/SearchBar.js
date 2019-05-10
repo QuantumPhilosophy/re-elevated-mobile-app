@@ -1,9 +1,9 @@
 import React from 'react'
 import { View } from 'react-native'
 import { Container, Header, Item, Input, Icon, Button, Text, Left } from 'native-base'
-import TopTab from "./TopTab"
+import TopTab from './TopTab'
 
-export default SearchBar = (props) => {
+export default (SearchBar = props => {
   return (
     <Header searchBar rounded>
       <Item>
