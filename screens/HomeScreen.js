@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
-import { Container, Content } from 'native-base'
+import { Container, Content, Header } from 'native-base'
 import { NavigationActions } from 'react-navigation'
 import SearchBar from '../components/SearchBar'
 import CardBasic from '../components/CardBasic'
 import API from '../utils/API'
+import TopTab from "../components/TopTab"
 
 export default class HomeScreen extends Component {
   static navigationOptions = {
@@ -14,7 +15,7 @@ export default class HomeScreen extends Component {
     // TODO: update bookSearch for strain / label searching
     // bookSearch: '',
     user: null,
-    apiStrains: [],
+    apiStrains: []
   };
 
   // On mount, fills apiStrains[] with strain objects for card instantiation.
@@ -60,32 +61,16 @@ export default class HomeScreen extends Component {
 
   render () {
     return (
-      <Container>
-        <SearchBar
+      <Container
+        style={styles.container}
+        marginTop={Platform.os === "ios" ? 0 : 24}
+      >
+        {/* <SearchBar
           handleInputChange={this.handleInputChange}
-          // TODO: create searchStrainLabels() for strain / label searching
-          // search={this.searchStrainLabels}
-          // logout={this.logout}
-        />
-        <Content>
-          {this.state.apiStrains.map((strain, index) => {
-            const strainObj = strain
-            // console.log('-----------------------------')
-            // console.log('setting strainObj', strainObj)
-            // console.log('-----------------------------')
-            return (
-              <CardBasic
-                key={index}
-                id={strain.id}
-                data={strainObj}
-                name={strain.strain_name}
-                img={strain.strain_img}
-                aveRating={strain.strain_avg_rating}
-                strainDetail={this.strainDetail}
-              />
-            )
-          })}
-        </Content>
+          search={this.searchBook}
+          logout={this.logout}
+        /> */}
+        <TopTab />
       </Container>
     )
   }
