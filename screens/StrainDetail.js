@@ -60,7 +60,7 @@ export default class StrainDetail extends Component {
             strain_medical={strain_medical}
             strain_race={strain_race}
           />
-          <Text>Labels that carry {strain_name}</Text>
+          <Text style={styles.text}>Labels that carry {strain_name}</Text>
 
           {this.state.apiLabels.map((label, index) => {
             return (
@@ -83,6 +83,10 @@ export default class StrainDetail extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
-  }
+    flex: 1,
+    backgroundColor: '#000000',
+  },
+  text: {
+    color: '#057e3a',
+  },
 })
