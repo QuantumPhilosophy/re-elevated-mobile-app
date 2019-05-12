@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import { View, StyleSheet } from 'react-native'
-import { Container, Content, H1, H2 } from 'native-base'
+import { StyleSheet } from 'react-native'
 import { NavigationActions } from 'react-navigation'
-import SearchBar from '../components/SearchBar'
+import { Container } from 'native-base'
+import AccountTabNav from '../components/AccountTabNav'
 import API from '../utils/API'
 
 export default class AccountScreen extends Component {
@@ -39,21 +39,9 @@ export default class AccountScreen extends Component {
   render () {
     return (
       <Container style={styles.container}>
-        <Content>
-          <SearchBar
-            handleInputChange={this.handleInputChange}
-            search={this.searchBook}
-            logout={this.logout}
-          />
-          <View style={styles.view}>
-            <View>
-              <H1 style={styles.text}>Elevated</H1>
-            </View>
-            <View>
-              <H2 style={styles.text}>Account Page</H2>
-            </View>
-          </View>
-        </Content>
+        <AccountTabNav
+          navigation={this.props.navigation}
+        />
       </Container>
     )
   }

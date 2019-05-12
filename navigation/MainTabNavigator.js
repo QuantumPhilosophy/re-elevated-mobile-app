@@ -31,7 +31,7 @@ SearchStack.navigationOptions = {
 
 const AccountsStack = createStackNavigator({
   Account: AccountScreen,
-  StrainDetail: StrainDetail
+  // StrainDetail: StrainDetail
 })
 
 AccountsStack.navigationOptions = {
