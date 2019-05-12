@@ -1,30 +1,10 @@
 import React from 'react'
 import { Platform } from 'react-native'
-import { createStackNavigator, createBottomTabNavigator } from 'react-navigation'
-import Login from '../screens/Auth/Login'
+import { createStackNavigator } from 'react-navigation'
 import SignUp from '../screens/Auth/SignUp'
+import Login from '../screens/Auth/Login'
 
 export default createStackNavigator({
-  Login: {
-    screen: Login,
-    path: '/loginUser'
-  },
-  SignUp: {
-    screen: SignUp,
-    path: '/signup'
-  }
+  Login: Login,
+  SignUp: SignUp
 })
-
-// HomeStack.navigationOptions = {
-//   tabBarLabel: 'Home',
-//   tabBarIcon: ({ focused }) => (
-//     <TabBarIcon
-//       focused={focused}
-//       name={
-//         Platform.OS === 'ios'
-//           ? `ios-information-circle${focused ? '' : '-outline'}`
-//           : 'md-information-circle'
-//       }
-//     />
-//   ),
-// };

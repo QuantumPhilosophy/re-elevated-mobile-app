@@ -1,33 +1,46 @@
 import React from 'react'
-import { Card, CardItem, Body, Button, Icon, Thumbnail, Left } from 'native-base'
 import { StyleSheet, Text } from 'react-native'
+import { Card, CardItem, Body, Thumbnail, Left } from 'native-base'
 
-// Basic card for strain and label information. The data expected for each is of the same format, so feeding it the correct props will show the correct data in the correct view.
+// Basic card for strain and label information.
 export default function CardBasic (props) {
+  // console.log('CardBasic props', props)
   return (
     <Card>
-      <CardItem style={styles.carditem}>
-        <Left><Thumbnail source={require('../assets/images/sativa.jpg')} /></Left>
+      <CardItem
+        button
+        style={styles.cardItem}
+        onPress={() => { props.label_name ? props.labelDetail(props) : props.strainDetail(props) }}
+      >
+        <Left>
+          <Thumbnail source={require('../assets/images/sativa.png')}/>
+        </Left>
         <Body>
-          <Text style={{ fontWeight: 'bold' }}>Name: </Text><Text>{props.name}</Text>
-          <Text style={{ fontWeight: 'bold' }}>Rating:</Text><Text>{props.aveRating}</Text>
+          <Text style={styles.cardText}>
+            Name: <Text style={styles.cardTextOverride}>{props.strain_name || props.label_name}</Text>
+          </Text>
+          <Text style={styles.cardText}>
+            Rating: <Text
+            style={{ fontWeight: 'normal' }}>{props.strain_name ? props.strain_avg_rating : props.label_avg_rating}</Text>
+          </Text>
+          <Text style={styles.cardText}>
+            Race: <Text style={{ fontWeight: 'normal' }}>{props.strain_race}</Text>
+          </Text>
         </Body>
-      </CardItem>
-      <CardItem style={styles.carditem}>
-        <Button
-          transparent
-          textStyle={{ color: 'white' }}
-          onPress={() => { props.strainDetail(props.data) }}>
-          <Icon name='link' />
-          <Text>Strain Details</Text>
-        </Button>
       </CardItem>
     </Card>
   )
 }
 
 const styles = StyleSheet.create({
-  carditem: {
-    // backgroundColor: '#000'
+  cardItem: {
+    backgroundColor: '#191919'
+  },
+  cardText: {
+    color: '#057e3a',
+    fontWeight: 'bold'
+  },
+  cardTextOverride: {
+    fontWeight: 'normal'
   }
 })
