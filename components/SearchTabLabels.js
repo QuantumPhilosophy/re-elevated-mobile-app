@@ -1,11 +1,12 @@
 import React from 'react'
+import { StyleSheet } from 'react-native'
 import { View } from 'native-base'
 import CardBasic from './CardBasic'
 
 export default function SearchTabLabels (props) {
   // console.log('SearchTabLabels props', props)
   return (
-    <View>
+    <View style={styles.view}>
       {props.apiLabels.map((label, index) => {
         // console.log('label item', label)
         return (
@@ -23,3 +24,10 @@ export default function SearchTabLabels (props) {
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+  view: {
+    height: '100%',
+    backgroundColor: '#000'
+  }
+})

@@ -1,7 +1,7 @@
 import React from 'react'
-import { Content, View } from 'native-base'
-import CardBasic from '../components/CardBasic'
 import { StyleSheet } from 'react-native'
+import { View } from 'native-base'
+import CardBasic from '../components/CardBasic'
 
 export default function SearchTabStrains (props) {
   // console.log('SearchTabStrains props', props)
@@ -33,6 +33,7 @@ export default function SearchTabStrains (props) {
 
 const styles = StyleSheet.create({
   view: {
+    height: '100%',
     backgroundColor: '#000'
   }
 })

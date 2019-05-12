@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { NavigationActions } from 'react-navigation'
-import { Container, Content, Tab, Tabs } from 'native-base'
+import { Content, Tab, Tabs } from 'native-base'
 import SearchTabStrains from './SearchTabStrains'
 import SearchTabLabels from './SearchTabLabels'
 import SearchTabAdv from './SearchTabAdv'
@@ -54,7 +54,7 @@ export default class SearchTabNav extends Component {
 
   render () {
     return (
-      <Content>
+      <Content style={styles.content}>
         <SearchBar/>
         <Tabs>
           <Tab heading="Strains" tabStyle={styles.tab} activeTabStyle={styles.activeTab}>
@@ -88,5 +88,8 @@ const styles = StyleSheet.create({
   },
   activeTab: {
     backgroundColor: '#191919'
+  },
+  content: {
+    backgroundColor: '#000'
   }
 })
