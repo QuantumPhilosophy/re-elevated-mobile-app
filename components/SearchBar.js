@@ -1,26 +1,25 @@
 import React from 'react'
-import { Header, Item, Input, Icon, Button } from 'native-base'
+import { StyleSheet } from 'react-native'
+import { Header, Item, Input, Icon, Button, Text } from 'native-base'
 
-export default (SearchBar = props => {
+export default function SearchBar (props) {
   return (
-    <Header searchBar rounded>
+    <Header searchBar rounded hasTabs
+            style={styles.header}
+    >
       <Item>
-        <Icon
-          style={{ padding: '2%' }}
-          onPress={props.logoutUser}
-          name='ios-person'
-        />
-
-        <Icon name='ios-search' />
-        <Input placeholder='Search' onChangeText={props.handleInputChange} />
+        <Icon name='ios-search'/>
+        <Input placeholder='Search' onChangeText={props.handleInputChange}/>
       </Item>
-      <Button transparent onPress={props.search} />
+      <Button transparent title='search' onPress={props.search}>
+        <Text>Search</Text>
+      </Button>
     </Header>
   )
-})
+}
 
-// const styles = StyleSheet.create({
-//   header: {
-//     backgroundColor: '#000'
-//   },
-// })
+const styles = StyleSheet.create({
+  header: {
+    backgroundColor: '#000'
+  }
+})

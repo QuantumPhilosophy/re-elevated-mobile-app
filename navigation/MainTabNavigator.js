@@ -1,49 +1,45 @@
 import React from 'react'
 import { Platform } from 'react-native'
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation'
-
-import TabBarIcon from '../components/TabBarIcon'
-import HomeScreen from '../screens/HomeScreen'
-import MyFavorites from '../screens/MyFavorites'
+import AccountScreen from '../screens/AccountScreen'
+import SearchScreen from '../screens/SearchScreen'
 import StrainDetail from '../screens/StrainDetail'
+import LabelDetail from '../screens/LabelDetail'
+import TabBarIcon from '../components/TabBarIcon'
 import Chat from '../screens/Chat'
 
-const HomeStack = createStackNavigator({
-  Home: HomeScreen,
-  StrainDetail: {
-    screen: StrainDetail,
-    path: '/detail'
-  }
+const SearchStack = createStackNavigator({
+  Search: SearchScreen,
+  StrainDetail: StrainDetail,
+  LabelDetail: LabelDetail
 })
 
-HomeStack.navigationOptions = {
+SearchStack.navigationOptions = {
   tabBarLabel: 'Search',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
       name={
         Platform.OS === 'ios'
-          ? `ios-information-circle${focused ? '' : '-outline'}`
-          : 'md-information-circle'
+          ? 'ios-search'
+          // ? `ios-information-circle${focused ? '' : '-outline'}`
+          : 'md-search'
       }
     />
   )
 }
 
-const MyFavoritesStack = createStackNavigator({
-  MyFavorites: MyFavorites,
-  StrainDetail: {
-    screen: StrainDetail,
-    path: '/detail'
-  }
+const AccountsStack = createStackNavigator({
+  Account: AccountScreen,
+  StrainDetail: StrainDetail
 })
 
-MyFavoritesStack.navigationOptions = {
+AccountsStack.navigationOptions = {
   tabBarLabel: 'Profile',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
-      name={Platform.OS === 'ios' ? 'ios-link' : 'md-link'}
+      name={Platform.OS === 'ios' ? 'ios-person' : 'md-person'}
     />
   )
 }
@@ -63,7 +59,18 @@ MyFavoritesStack.navigationOptions = {
 // }
 
 export default createBottomTabNavigator({
-  HomeStack,
-  MyFavoritesStack
-  // ChatStack
-})
+    SearchStack,
+    AccountsStack,
+    // ChatStack
+  },
+  {
+    tabBarOptions: {
+      activeTintColor: '#191919',
+      labelStyle: {
+        fontSize: 12,
+      },
+      style: {
+        backgroundColor: '#000000'
+      },
+    }
+  })

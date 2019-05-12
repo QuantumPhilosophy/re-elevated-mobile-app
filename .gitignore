@@ -1,6 +1,7 @@
 node_modules/**/*
 .idea/
 .expo/*
+.DS_Store
 npm-debug.*
 *.jks
 *.p12

@@ -5,7 +5,7 @@ import { NavigationActions } from 'react-navigation'
 import SearchBar from '../components/SearchBar'
 import API from '../utils/API'
 
-export default class MyFavorites extends Component {
+export default class AccountScreen extends Component {
   static navigationOptions = {
     header: null,
   }
@@ -16,7 +16,7 @@ export default class MyFavorites extends Component {
   }
 
   componentDidMount () {
-    console.log('MyFavorites triggered')
+    console.log('AccountScreen triggered')
     // this.props.navigation.addListener('willFocus', (route) => {
     //   // API.getUser()
     //   // .then(res => {
