@@ -48,7 +48,7 @@ export default class LabelDetail extends Component {
             // img={label_img}
             label_avg_rating={label_avg_rating}
           />
-          <Text>Strains Carried by {label_name}</Text>
+          <Text style={styles.text}>Strains Carried by {label_name}</Text>
 
           {this.state.apiStrains.map((strain, index) => {
             return (
@@ -72,6 +72,10 @@ export default class LabelDetail extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
-  }
+    flex: 1,
+    backgroundColor: '#000000',
+  },
+  text: {
+    color: '#057e3a',
+  },
 })

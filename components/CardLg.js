@@ -27,11 +27,11 @@ export function StrainCardLg (props) {
             alignItems: 'stretch'
           }}>
             <View>
-              <Text style={{ fontStyle: 'italic', fontWeight: 'bold', fontSize: 24 }}>{strain_name}</Text>
+              <Text style={{ fontStyle: 'italic', fontWeight: 'bold', fontSize: 24, color: '#057e3a' }}>{strain_name}</Text>
             </View>
             <View>
-              <Text style={{ fontWeight: 'bold' }}>
-                Strain Rating: <Text style={{ fontWeight: 'normal' }}>{strain_avg_rating}</Text>
+              <Text style={{ fontWeight: 'bold', color: '#057e3a' }}>
+                Strain Rating: <Text style={{ fontWeight: 'normal', color: '#057e3a' }}>{strain_avg_rating}</Text>
               </Text>
             </View>
           </View>
@@ -40,28 +40,28 @@ export function StrainCardLg (props) {
 
       <CardItem style={styles.carditem}>
         <ScrollView height={175}>
-          <Text style={{ fontWeight: 'bold', fontSize: 18 }}>Attributes</Text>
-          <Text style={{ fontWeight: 'bold' }}>
+          <Text style={{ fontWeight: 'bold', fontSize: 18, color: '#057e3a' }}>Attributes</Text>
+          <Text style={{ fontWeight: 'bold', color: '#057e3a' }}>
             Flavor notes: <Text style={{ fontWeight: 'normal', color: 'green' }}>{strain_flavor}</Text>
           </Text>
-          <Text style={{ fontWeight: 'bold' }}>
+          <Text style={{ fontWeight: 'bold', color: '#057e3a' }}>
             Medical: <Text style={{ fontWeight: 'normal', color: 'green' }}>{strain_medical}</Text>
           </Text>
-          <Text style={{ fontWeight: 'bold' }}>
+          <Text style={{ fontWeight: 'bold', color: '#057e3a' }}>
             Positive: <Text style={{ fontWeight: 'normal', color: 'green' }}>{strain_positive}</Text>
           </Text>
-          <Text style={{ fontWeight: 'bold' }}>
+          <Text style={{ fontWeight: 'bold', color: '#057e3a' }}>
             Negative: <Text style={{ fontWeight: 'normal', color: 'red' }}>{strain_negative}</Text>
           </Text>
-          <Text style={{ fontWeight: 'bold', fontSize: 18 }}>About </Text>
-          <Text>{strain_descr}</Text>
+          <Text style={{ fontWeight: 'bold', fontSize: 18, color: '#057e3a' }}>About </Text>
+          <Text style={{ fontWeight: 'normal', color: 'green' }}>{strain_descr}</Text>
         </ScrollView>
       </CardItem>
 
       <CardItem footer style={styles.carditem}>
         <Left>
-          <Text style={{ fontWeight: 'bold' }}>
-            Race: <Text style={{ fontWeight: 'normal' }}>{strain_race}</Text>
+          <Text style={{ fontWeight: 'bold', color: '#057e3a' }}>
+            Race: <Text style={{ fontWeight: 'normal', color: 'green' }}>{strain_race}</Text>
           </Text>
         </Left>
       </CardItem>
@@ -73,7 +73,7 @@ export function LabelCardLg (props) {
   // console.log('LabelCardLg props', props)
   const { label_name, label_avg_rating } = props.data
   return (
-    <Card>
+    <Card style={styles.card}>
       <CardItem header style={styles.carditem}>
         <Left>
           <Thumbnail source={require('../assets/images/sativa.png')} style={{ marginRight: 5 }}/>
@@ -84,11 +84,11 @@ export function LabelCardLg (props) {
             alignItems: 'stretch'
           }}>
             <View>
-              <Text style={{ fontStyle: 'italic', fontWeight: 'bold', fontSize: 24 }}>{label_name}</Text>
+              <Text style={{ fontStyle: 'italic', fontWeight: 'bold', fontSize: 24, color: '#057e3a' }}>{label_name}</Text>
             </View>
             <View>
-              <Text style={{ fontWeight: 'bold' }}>
-                Label Rating: <Text style={{ fontWeight: 'normal' }}>{label_avg_rating}</Text>
+              <Text style={{ fontWeight: 'bold', color: '#057e3a' }}>
+                Label Rating: <Text style={{ fontWeight: 'normal', color: '#057e3a' }}>{label_avg_rating}</Text>
               </Text>
             </View>
           </View>
@@ -96,7 +96,7 @@ export function LabelCardLg (props) {
       </CardItem>
 
       <CardItem style={styles.carditem}>
-        <Text style={{ fontWeight: 'bold', fontSize: 18 }}>About {label_name}</Text>
+        <Text style={{ fontWeight: 'bold', fontSize: 18, color: '#057e3a' }}>Something About {label_name}</Text>
       </CardItem>
     </Card>
   )
@@ -116,7 +116,15 @@ export default function CardLg (props) {
 }
 
 const styles = StyleSheet.create({
+  card: {
+    flex: 1,
+    backgroundColor: '#000',
+  },
   carditem: {
-    flex: 1
-  }
+    flex: 1,
+    backgroundColor: '#191919',
+  },
+  text: {
+    color: '#057e3a',
+  },
 })
