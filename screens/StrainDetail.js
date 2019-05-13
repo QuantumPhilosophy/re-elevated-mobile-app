@@ -30,7 +30,7 @@ export default class StrainDetail extends Component {
 
   render () {
     // console.log('-----------------------------')
-    // console.log('strainDetail screen triggered', this.props.navigation.state.params.data)
+    // console.log('strainDetail screen triggered', this.props.navigation.state.params.data.data.data)
     // console.log('-----------------------------')
     const {
       id,
@@ -42,7 +42,7 @@ export default class StrainDetail extends Component {
       strain_medical,
       strain_negative,
       strain_positive
-    } = this.props.navigation.state.params.data
+    } = this.props.navigation.state.params.data.data.data
     return (
       <Container style={styles.container}>
         <SearchBar/>

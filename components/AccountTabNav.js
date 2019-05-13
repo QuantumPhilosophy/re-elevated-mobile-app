@@ -57,26 +57,50 @@ export default class AccountTabNav extends Component {
     return (
       <Content style={styles.content}>
         <SearchBar/>
-        <Tabs>
-          <Tab heading="Wishlisted" tabStyle={styles.tab} activeTabStyle={styles.activeTab}>
+        <Tabs tabBarUnderlineStyle={styles.underline}>
+          <Tab
+            heading="Wishlisted"
+            tabStyle={styles.tab}
+            textStyle={styles.text}
+            activeTabStyle={styles.activeTab}
+            activeTextStyle={styles.activeText}
+          >
             <AccountTabWishlisted
               props={'Wishlisted!!'}
             />
           </Tab>
 
-          <Tab heading="Tried" tabStyle={styles.tab} activeTabStyle={styles.activeTab}>
+          <Tab
+            heading="Tried"
+            tabStyle={styles.tab}
+            textStyle={styles.text}
+            activeTabStyle={styles.activeTab}
+            activeTextStyle={styles.activeText}
+          >
             <AccountTabTried
               props={'Tried!!'}
             />
           </Tab>
 
-          <Tab heading="Friended" tabStyle={styles.tab} activeTabStyle={styles.activeTab}>
+          <Tab
+            heading="Friended"
+            tabStyle={styles.tab}
+            textStyle={styles.text}
+            activeTabStyle={styles.activeTab}
+            activeTextStyle={styles.activeText}
+          >
             <AccountTabFriended
               props={'Friended!!'}
             />
           </Tab>
 
-          <Tab heading="Achieved" tabStyle={styles.tab} activeTabStyle={styles.activeTab}>
+          <Tab
+            heading="Achieved"
+            tabStyle={styles.tab}
+            textStyle={styles.text}
+            activeTabStyle={styles.activeTab}
+            activeTextStyle={styles.activeText}
+          >
             <AccountTabAchieved
               props={'Achieved!!'}
             />
@@ -89,10 +113,19 @@ export default class AccountTabNav extends Component {
 
 const styles = StyleSheet.create({
   tab: {
-    backgroundColor: '#000'
+    backgroundColor: '#000',
   },
   activeTab: {
     backgroundColor: '#191919'
+  },
+  text: {
+    color: 'green'
+  },
+  activeText: {
+    color: 'darkgreen'
+  },
+  underline: {
+    backgroundColor: 'green',
   },
   content: {
     backgroundColor: '#000'

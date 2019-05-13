@@ -4,15 +4,13 @@ import { Header, Item, Input, Icon, Button, Text } from 'native-base'
 
 export default function SearchBar (props) {
   return (
-    <Header searchBar rounded hasTabs
-            style={styles.header}
-    >
+    <Header searchBar rounded hasTabs style={styles.header}>
       <Item>
-        <Icon name='ios-search'/>
-        <Input placeholder='Search' onChangeText={props.handleInputChange}/>
+        <Input bordered placeholder='Search' onChangeText={props.handleInputChange} placeholderTextColor='#463B2F' style={styles.input} />
       </Item>
-      <Button transparent title='search' onPress={props.search}>
-        <Text>Search</Text>
+      <Button transparent iconLeft title='search' onPress={props.search}>
+        <Icon name='ios-search' style={styles.icon}/>
+        {/*<Text>Search</Text>*/}
       </Button>
     </Header>
   )
@@ -20,6 +18,18 @@ export default function SearchBar (props) {
 
 const styles = StyleSheet.create({
   header: {
+    backgroundColor: '#000'
+  },
+  icon: {
+    backgroundColor: '#000',
+    color: '#aaa',
+    marginRight: 5
+  },
+  input: {
+    height: 35,
+    backgroundColor: '#191919',
+  },
+  style: {
     backgroundColor: '#000'
   }
 })

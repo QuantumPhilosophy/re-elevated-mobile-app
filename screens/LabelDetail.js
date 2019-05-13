@@ -30,13 +30,13 @@ export default class LabelDetail extends Component {
 
   render () {
     // console.log('-----------------------------')
-    // console.log('LabelDetail screen triggered', this.props.navigation.state.params.data)
+    // console.log('LabelDetail screen triggered', this.props.navigation.state.params.data.data.data)
     // console.log('-----------------------------')
     const {
       id,
       label_name,
       label_avg_rating
-    } = this.props.navigation.state.params.data
+    } = this.props.navigation.state.params.data.data.data
     return (
       <Container style={styles.container}>
         <SearchBar/>
