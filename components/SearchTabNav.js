@@ -35,7 +35,7 @@ export default class SearchTabNav extends Component {
   }
 
   labelDetail = (labelObj) => {
-    console.log('labelObj', labelObj)
+    // console.log('labelObj', labelObj)
     const navigateAction = NavigationActions.navigate({
       routeName: 'LabelDetail',
       params: { data: labelObj }
@@ -44,7 +44,7 @@ export default class SearchTabNav extends Component {
   }
 
   strainDetail = (strainObj) => {
-    console.log('strainObj', strainObj)
+    // console.log('strainObj', strainObj)
     const navigateAction = NavigationActions.navigate({
       routeName: 'StrainDetail',
       params: { data: strainObj }
@@ -56,22 +56,40 @@ export default class SearchTabNav extends Component {
     return (
       <Content style={styles.content}>
         <SearchBar/>
-        <Tabs>
-          <Tab heading="Strains" tabStyle={styles.tab} activeTabStyle={styles.activeTab}>
+        <Tabs tabBarUnderlineStyle={styles.underline}>
+          <Tab
+            heading="Strains"
+            tabStyle={styles.tab}
+            textStyle={styles.text}
+            activeTabStyle={styles.activeTab}
+            activeTextStyle={styles.activeText}
+          >
             <SearchTabStrains
               apiStrains={this.state.apiStrains}
               strainDetail={this.strainDetail}
             />
           </Tab>
 
-          <Tab heading="Labels" tabStyle={styles.tab} activeTabStyle={styles.activeTab}>
+          <Tab
+            heading="Labels"
+            tabStyle={styles.tab}
+            textStyle={styles.text}
+            activeTabStyle={styles.activeTab}
+            activeTextStyle={styles.activeText}
+          >
             <SearchTabLabels
               apiLabels={this.state.apiLabels}
               labelDetail={this.labelDetail}
             />
           </Tab>
 
-          <Tab heading="Filter" tabStyle={styles.tab} activeTabStyle={styles.activeTab}>
+          <Tab
+            heading="Filter"
+            tabStyle={styles.tab}
+            textStyle={styles.text}
+            activeTabStyle={styles.activeTab}
+            activeTextStyle={styles.activeText}
+          >
             <SearchTabAdv
               props={'PROPS!!'}
             />
@@ -84,10 +102,20 @@ export default class SearchTabNav extends Component {
 
 const styles = StyleSheet.create({
   tab: {
-    backgroundColor: '#000'
+    backgroundColor: '#000',
+    // color: 'green'
   },
   activeTab: {
     backgroundColor: '#191919'
+  },
+  text: {
+    color: '#463B2F'
+  },
+  activeText: {
+    color: '#73703a'
+  },
+  underline: {
+    backgroundColor: '#66462a',
   },
   content: {
     backgroundColor: '#000'
