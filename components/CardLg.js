@@ -23,7 +23,7 @@ export function StrainCardLg (props) {
           <View style={{
             flex: 1,
             flexDirection: 'column',
-            justifyContent: 'start',
+            // justifyContent: 'start',
             alignItems: 'stretch'
           }}>
             <View>
@@ -80,7 +80,7 @@ export function LabelCardLg (props) {
           <View style={{
             flex: 1,
             flexDirection: 'column',
-            justifyContent: 'start',
+            // justifyContent: 'start',
             alignItems: 'stretch'
           }}>
             <View>
