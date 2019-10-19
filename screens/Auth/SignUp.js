@@ -16,7 +16,7 @@ import {
   Right
 } from 'native-base'
 import { NavigationActions } from 'react-navigation'
-import { ImagePicker, Permissions } from 'expo'
+// import { ImagePicker, Permissions } from 'expo'
 import API from '../../utils/API'
 
 export default class SignUp extends Component {

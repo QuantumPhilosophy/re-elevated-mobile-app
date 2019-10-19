@@ -1,8 +1,10 @@
 node_modules/**/*
 .idea/
 .expo/*
+.expo-shared/*
 .DS_Store
 npm-debug.*
+report.*
 *.jks
 *.p12
 *.key
