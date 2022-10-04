@@ -14,7 +14,7 @@
     "@expo/samples": "2.1.1",
     "axios": "^0.18.0",
     "cors": "^2.8.5",
-    "expo": "^32.0.6",
+    "expo": "^46.0.14",
     "native-base": "^2.12.1",
     "react": "16.5.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz",
